@@ -1,4 +1,3 @@
-import React from 'react';
 import { Shield, Zap, Globe } from 'lucide-react';
 
 export default function Hero() {

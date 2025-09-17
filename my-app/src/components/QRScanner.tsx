@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { QrCode, Camera, Search, CheckCircle, AlertTriangle } from 'lucide-react';
+import { useState } from 'react';
+import { QrCode, Camera, Search, CheckCircle } from 'lucide-react';
 
 export default function QRScanner() {
   const [scanResult, setScanResult] = useState<'authentic' | 'suspicious' | null>(null);
