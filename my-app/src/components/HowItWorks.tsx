@@ -1,4 +1,3 @@
-import React from 'react';
 import { Upload, Cpu, QrCode, Shield } from 'lucide-react';
 
 const steps = [

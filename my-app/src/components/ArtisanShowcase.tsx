@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapPin, Calendar, Star, CheckCircle } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, Calendar, Star, CheckCircle, Bookmark } from 'lucide-react';
 
 const artisans = [
   {
@@ -35,6 +35,17 @@ const artisans = [
 ];
 
 export default function ArtisanShowcase() {
+  const [pinnedArtisans, setPinnedArtisans] = useState<Set<number>>(new Set());
+
+  const togglePin = (index: number) => {
+    const newPinnedArtisans = new Set(pinnedArtisans);
+    if (newPinnedArtisans.has(index)) {
+      newPinnedArtisans.delete(index);
+    } else {
+      newPinnedArtisans.add(index);
+    }
+    setPinnedArtisans(newPinnedArtisans);
+  };
   return (
     <section id="artisans" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,6 +67,19 @@ export default function ArtisanShowcase() {
                   alt={artisan.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
+                <button
+                  onClick={() => togglePin(index)}
+                  className={`absolute top-4 left-4 p-2 rounded-full transition-all duration-200 hover:scale-110 ${
+                    pinnedArtisans.has(index)
+                      ? 'bg-earth-tan-600 text-white shadow-lg'
+                      : 'bg-white/80 text-earth-tan-600 hover:bg-white'
+                  }`}
+                  title={pinnedArtisans.has(index) ? 'Unpin from profile' : 'Pin to profile'}
+                >
+                  <Bookmark 
+                    className={`h-4 w-4 ${pinnedArtisans.has(index) ? 'fill-current' : ''}`} 
+                  />
+                </button>
                 {artisan.verified && (
                   <div className="absolute top-4 right-4 bg-sage-green-500 rounded-full p-2">
                     <CheckCircle className="h-5 w-5 text-white" />

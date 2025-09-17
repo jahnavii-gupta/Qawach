@@ -1,4 +1,3 @@
-import React from 'react';
 import { QrCode, Camera, Award, Users, ShieldCheck, Palette } from 'lucide-react';
 
 const features = [
